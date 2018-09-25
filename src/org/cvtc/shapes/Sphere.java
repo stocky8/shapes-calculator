@@ -1,12 +1,10 @@
 package org.cvtc.shapes;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author hstockdill
  *
  */
-public class Sphere extends Shape {
+public class Sphere extends Shape implements Renderer {
 	
 	// Private float value declared so only this class can change, modify, or view it. We can
 	// do it this way because there are getters, and setters to access it from outside of the
@@ -14,7 +12,8 @@ public class Sphere extends Shape {
 	private float radius;
 	
 	//Construct the Sphere with the value it is assigned when using it elsewhere
-	public Sphere(float radius) {
+	public Sphere(Dialog messageBox, float radius) {
+		super(messageBox);
 		setRadius(radius);
 	}
 	
@@ -50,17 +49,17 @@ public class Sphere extends Shape {
 		// Values are also not calculated until volume() or surfaceArea() are called.
 		
 		if (isValid(radius)) { // If the inputs are valid do this...
-			JOptionPane.showMessageDialog(null,
-					"Raidus: " + radius +
-					", Surface Area: " + surfaceArea() +
-					", Volume: " + volume(),
-					"Sphere",
-					JOptionPane.PLAIN_MESSAGE);
+			
+			messageBox.show("Raidus: " + radius +
+							", Surface Area: " + surfaceArea() +
+							", Volume: " + volume(),
+							"Sphere");
+			
 		} else { // If the inputs are not valid do this...
-			JOptionPane.showMessageDialog(null,
-					"Sphere input is invalid, please input a positive float value greater than zero.",
-					"Sphere",
-					JOptionPane.PLAIN_MESSAGE);
+			
+			messageBox.show("Sphere input is invalid, please input a positive float value greater than zero.",
+							"Sphere");
+			
 		}
 		
 	}

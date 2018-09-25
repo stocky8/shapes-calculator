@@ -1,12 +1,10 @@
 package org.cvtc.shapes;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author hstockdill
  *
  */
-public class Cuboid extends Shape {
+public class Cuboid extends Shape implements Renderer{
 	
 	// Private float values are declared so only this class can change, modify, or view them. We can
 	// do it this way because there are getters, and setters to access it from outside of the
@@ -16,7 +14,8 @@ public class Cuboid extends Shape {
 	private float depth;
 	
 	// When this class is used set the width, height, and depth as soon as possible.
-	public Cuboid(float width, float height, float depth) {
+	public Cuboid(Dialog messageBox, float width, float height, float depth) {
+		super(messageBox);
 		setWidth(width);
 		setHeight(height);
 		setDepth(depth);
@@ -70,19 +69,20 @@ public class Cuboid extends Shape {
 		// Values are also not calculated until volume() or surfaceArea() are called.
 		
 		if (isValid(width, height, depth)) { // If the Width, Height, AND Depth are all valid do this...
-			JOptionPane.showMessageDialog(null,
-					"Width: " + width +
-					", Height: " + height +
-					", Depth: " + depth +
-					", Surface Area: " + surfaceArea() +
-					", Volume: " + volume(),
-					"Cuboid",
-					JOptionPane.PLAIN_MESSAGE);
+			
+			messageBox.show("Width: " + width +
+								", Height: " + height +
+								", Depth: " + depth +
+								", Surface Area: " + surfaceArea() +
+								", Volume: " + volume(),
+								"Cuboid");
+			
+			
 		} else { // If one or more of the inputs are invalid do this...
-			JOptionPane.showMessageDialog(null, 
-					"Cuboid input is invalid, please input positive float values greater than zero.",
-					"Cuboid",
-					JOptionPane.PLAIN_MESSAGE);
+			
+			messageBox.show("Cuboid input is invalid, please input positive float values greater than zero.",
+							"Cuboid");
+			
 		}
 		
 	}

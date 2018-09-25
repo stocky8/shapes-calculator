@@ -1,12 +1,10 @@
 package org.cvtc.shapes;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author hstockdill
  *
  */
-public class Cylinder extends Shape {
+public class Cylinder extends Shape implements Renderer{
 	
 	// Private float values are declared so only this class can change, modify, or view them. We can
 	// do it this way because there are getters, and setters to access it from outside of the
@@ -16,7 +14,8 @@ public class Cylinder extends Shape {
 
 	// When used in the ShapesTest (or any other class) this constructs this class, setting the
 	// radius and height.
-	public Cylinder(float radius, float height) {
+	public Cylinder(Dialog messageBox, float radius, float height) {
+		super(messageBox);
 		setRadius(radius);
 		setHeight(height);
 	}
@@ -61,18 +60,18 @@ public class Cylinder extends Shape {
 		// Values are also not calculated until volume() or surfaceArea() are called.
 		
 		if (isValid(radius, height)) { // If input valid do this...
-			JOptionPane.showMessageDialog(null, 
-					"Raidus: " + radius +
-					", Height: " + height +
-					", Surface Area: " + surfaceArea() +
-					", Volume: " + volume(),
-					"Cylinder",
-					JOptionPane.PLAIN_MESSAGE);
+			
+			messageBox.show("Raidus: " + radius +
+								", Height: " + height +
+								", Surface Area: " + surfaceArea() +
+								", Volume: " + volume(),
+								"Cylinder");
+			
 		} else { // If the input is invalid (radius or height) do this...
-			JOptionPane.showMessageDialog(null, 
-					"Cylinder input is invalid, please input positive float values greater than zero.",
-					"Cylinder",
-					JOptionPane.PLAIN_MESSAGE);
+			
+			messageBox.show("Cylinder input is invalid, please input positive float values greater than zero.",
+								"Cylinder");
+			
 		}
 		
 	}
