@@ -62,7 +62,7 @@ public class Cuboid extends Shape implements Renderer{
 	}
 
 	@Override
-	public void render() {
+	public int render() {
 		// When this is called it will output the values calculated and display them to the user
 		// in a simple message box. Before calculating it has to see if the input is valid
 		// if the input is not valid it will not calculate and just display the error message.
@@ -70,18 +70,20 @@ public class Cuboid extends Shape implements Renderer{
 		
 		if (isValid(width, height, depth)) { // If the Width, Height, AND Depth are all valid do this...
 			
-			messageBox.show("Width: " + width +
+			String message = "Width: " + width +
 								", Height: " + height +
 								", Depth: " + depth +
 								", Surface Area: " + surfaceArea() +
-								", Volume: " + volume(),
-								"Cuboid");
+								", Volume: " + volume();
+			
+			return messageBox.show(message, "Cuboid");
 			
 			
 		} else { // If one or more of the inputs are invalid do this...
 			
-			messageBox.show("Cuboid input is invalid, please input positive float values greater than zero.",
-							"Cuboid");
+			String message = "Cuboid input is invalid, please input positive float values greater than zero.";
+			
+			return messageBox.show(message, "Cuboid");
 			
 		}
 		

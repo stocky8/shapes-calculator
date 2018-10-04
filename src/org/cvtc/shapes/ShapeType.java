@@ -4,8 +4,10 @@ package org.cvtc.shapes;
  * @author hstockdill
  *
  */
-public interface Renderer {
+public enum ShapeType {
 
-	public int render();
+	Cuboid,
+	Cylinder,
+	Sphere
 	
 }

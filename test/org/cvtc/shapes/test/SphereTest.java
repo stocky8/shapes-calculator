@@ -1,40 +1,41 @@
 package org.cvtc.shapes.test;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.cvtc.shapes.Cylinder;
+import org.cvtc.shapes.Renderer;
+import org.cvtc.shapes.ShapeFactory;
+import org.cvtc.shapes.ShapeType;
 import org.cvtc.shapes.Sphere;
 import org.junit.Test;
 
 public class SphereTest {
 	
-	MessageBoxSub msgbox = new MessageBoxSub();
+	ShapeFactory shapeFactory = new ShapeFactory(new MessageBoxSub());
 
 	@Test
 	public void testSurfaceArea() {
-		assertEquals(1256.6370, new Sphere(msgbox, 10).surfaceArea(), 0.0002);
-		
-		assertEquals(113.0973, new Sphere(msgbox, 3).surfaceArea(), 0.0002);
-		
-		assertEquals(452.3893, new Sphere(msgbox, 6).surfaceArea(), 0.0002);
+		Renderer sphere = shapeFactory.make(ShapeType.Sphere);
+		assertEquals(314.15927, ((Sphere) sphere).surfaceArea(), 0.0002);
 	}
 
 	@Test
 	public void testVolume() {
-		assertEquals(4188.7902, new Sphere(msgbox, 10).volume(), 0.0002);
-		
-		assertEquals(113.0973, new Sphere(msgbox, 3).volume(), 0.0002);
-		
-		assertEquals(904.7786, new Sphere(msgbox, 6).volume(), 0.0002);
+		Renderer sphere = shapeFactory.make(ShapeType.Sphere);
+		assertEquals(523.59875, ((Sphere) sphere).volume(), 0.0002);
 	}
 
 	@Test
 	public void testSphere() {
-		assertEquals(4188.7902, new Sphere(msgbox, 10).volume(), 0.0002);
+		Renderer sphere = shapeFactory.make(ShapeType.Sphere);
+		assertEquals(523.59875, ((Sphere) sphere).volume(), 0.0002);
 	}
 
 	@Test
 	public void testGetRadius() {
-		assertEquals(10, new Sphere(msgbox, 10).getRadius(), 0.0002);
+		Renderer sphere = shapeFactory.make(ShapeType.Sphere);
+		assertEquals(5, ((Sphere) sphere).getRadius(), 0.0002);
 	}
 
 }

@@ -42,7 +42,7 @@ public class Sphere extends Shape implements Renderer {
 	}
 
 	@Override
-	public void render() { 
+	public int render() { 
 		// When this is called it will output the values calculated and display them to the user
 		// in a simple message box. Before calculating it has to see if the input is valid
 		// if the input is not valid it will not calculate and just display the error message.
@@ -50,15 +50,17 @@ public class Sphere extends Shape implements Renderer {
 		
 		if (isValid(radius)) { // If the inputs are valid do this...
 			
-			messageBox.show("Raidus: " + radius +
+			String message = "Raidus: " + radius +
 							", Surface Area: " + surfaceArea() +
-							", Volume: " + volume(),
-							"Sphere");
+							", Volume: " + volume();
+			
+			return messageBox.show(message, "Sphere");
 			
 		} else { // If the inputs are not valid do this...
 			
-			messageBox.show("Sphere input is invalid, please input a positive float value greater than zero.",
-							"Sphere");
+			String message = "Sphere input is invalid, please input a positive float value greater than zero.";
+			
+			return messageBox.show(message, "Sphere");
 			
 		}
 		

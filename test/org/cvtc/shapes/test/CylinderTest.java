@@ -1,41 +1,46 @@
 package org.cvtc.shapes.test;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.cvtc.shapes.Cylinder;
+import org.cvtc.shapes.Renderer;
+import org.cvtc.shapes.ShapeFactory;
+import org.cvtc.shapes.ShapeType;
 import org.junit.Test;
 
 public class CylinderTest {
 	
-	MessageBoxSub msgbox = new MessageBoxSub();
+	ShapeFactory shapeFactory = new ShapeFactory(new MessageBoxSub());
 
 	@Test
 	public void testSurfaceArea() {
-		assertEquals(125.6637, new Cylinder(msgbox, 2, 8).surfaceArea(), 0.0002);
-		assertEquals(376.991, new Cylinder(msgbox, 6, 4).surfaceArea(), 0.0002);
-		assertEquals(678.584, new Cylinder(msgbox, 9, 3).surfaceArea(), 0.0002);
+		Renderer cylinder = shapeFactory.make(ShapeType.Cylinder);
+		assertEquals(471.2389, ((Cylinder) cylinder).surfaceArea(), 0.0002);
 	}
 
 	@Test
 	public void testVolume() {
-		assertEquals(100.531, new Cylinder(msgbox, 2, 8).volume(), 0.0002);
-		assertEquals(763.407, new Cylinder(msgbox, 9, 3).volume(), 0.0002);
-		assertEquals(75.3982, new Cylinder(msgbox, 2, 6).volume(), 0.0002);
+		Renderer cylinder = shapeFactory.make(ShapeType.Cylinder);
+		assertEquals(785.3982, ((Cylinder) cylinder).volume(), 0.0002);
 	}
 
 	@Test
 	public void testCylinder() {
-		assertEquals(452.3893, new Cylinder(msgbox, 6, 4).volume(), 0.0002);
+		Renderer cylinder = shapeFactory.make(ShapeType.Cylinder);
+		assertEquals(785.3982, ((Cylinder) cylinder).volume(), 0.0002);
 	}
 
 	@Test
 	public void testGetRadius() {
-		assertEquals(6, new Cylinder(msgbox, 6, 4).getRadius(), 0.0002);
+		Renderer cylinder = shapeFactory.make(ShapeType.Cylinder);
+		assertEquals(5, ((Cylinder) cylinder).getRadius(), 0.0002);
 	}
 
 	@Test
 	public void testGetHeight() {
-		assertEquals(4, new Cylinder(msgbox, 6, 4).getHeight(), 0.0002);
+		Renderer cylinder = shapeFactory.make(ShapeType.Cylinder);
+		assertEquals(10, ((Cylinder) cylinder).getHeight(), 0.0002);
 	}
 
 }

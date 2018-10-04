@@ -53,7 +53,7 @@ public class Cylinder extends Shape implements Renderer{
 	}
 
 	@Override
-	public void render() {
+	public int render() {
 		// When this is called it will output the values calculated and display them to the user
 		// in a simple message box. Before calculating it has to see if the input is valid
 		// if the input is not valid it will not calculate and just display the error message.
@@ -61,16 +61,18 @@ public class Cylinder extends Shape implements Renderer{
 		
 		if (isValid(radius, height)) { // If input valid do this...
 			
-			messageBox.show("Raidus: " + radius +
+			String message = "Raidus: " + radius +
 								", Height: " + height +
 								", Surface Area: " + surfaceArea() +
-								", Volume: " + volume(),
-								"Cylinder");
+								", Volume: " + volume();
+			
+			return messageBox.show(message, "Cylinder");
 			
 		} else { // If the input is invalid (radius or height) do this...
 			
-			messageBox.show("Cylinder input is invalid, please input positive float values greater than zero.",
-								"Cylinder");
+			String message = "Cylinder input is invalid, please input positive float values greater than zero.";
+			
+			return messageBox.show(message, "Cylinder");
 			
 		}
 		
